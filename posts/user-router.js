@@ -13,17 +13,28 @@ const userrouter = express.Router()
 
 // server.use(upperCase);
 
+    // userrouter.get('/', async (req, res) => {
+    //     try {
+    //         const users = await UserData.get(req.query);
+    //         res.status(200).json(users);
+    //     } catch (err) {
+    //         console.log(error);
+    //         res.status(500).json({
+    //             error: 'The users information could not be retrieved.'
+    //         });
+    //     }
+    // });
+
     userrouter.get('/', async (req, res) => {
         try {
-            const users = await UserData.get(req.query);
-            res.status(200).json(users);
-        } catch (err) {
-            console.log(error);
-            res.status(500).json({
-                error: 'The users information could not be retrieved.'
-            });
+          const shoutouts = await UserData.get('shoutouts');
+          const messageOfTheDay = process.env.MOTD || 'Hello World!'; // add this line
+          res.status(200).json({ motd: messageOfTheDay, shoutouts }); // change this line
+        } catch (error) {
+          console.error('\nERROR', error);
+          res.status(500).json({ error: 'Cannot retrieve the shoutouts' });
         }
-    });
+      });
 
 // CURRENT URL /api/users/1 etc
 
