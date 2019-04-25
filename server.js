@@ -10,8 +10,10 @@ const server = express()
     server.use(express.json())
 
     server.get('/', (req,res) => {
-        res.send('Navigate to /api/users for data')
+        res.send('Navigate to /api/users for MOTD and user data')
     })
+
+
 
     
 server.use('/api/posts', postRouter)
