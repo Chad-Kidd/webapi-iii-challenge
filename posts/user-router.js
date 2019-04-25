@@ -2,9 +2,16 @@ const express = require('express')
 
 const UserData = require('../data/helpers/userDb')
 
+const server = express()
+
 const userrouter = express.Router()
 
+function upperCase(req, res, next) { 
+    return req.body.name = req.body.name.toUpperCase();
+    next();
+} //put in post call after URL
 
+server.use(upperCase);
 
     userrouter.get('/', async (req, res) => {
         try {
@@ -20,7 +27,7 @@ const userrouter = express.Router()
 
 // CURRENT URL /api/users/1 etc
 
-    userrouter.get('/:id', async (req, res) => {
+    userrouter.get('/:id', upperCase, async (req, res) => {
         try {
             const user = await UserData.getById(req.params.id);
             if (user) {

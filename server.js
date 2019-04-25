@@ -6,6 +6,7 @@ const userRouter = require('./posts/user-router')
 
 const server = express()
 
+
     server.use(express.json())
 
     server.get('/', (req,res) => {
