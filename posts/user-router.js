@@ -6,12 +6,11 @@ const server = express()
 
 const userrouter = express.Router()
 
-// function upperCase(req, res, next) { 
-//     return req.body.name = req.body.name.toUpperCase();
-//     next();
-// } //put in post call after URL
-
-// server.use(upperCase);
+const toUppercase =  (req, res, next) => {
+    req.body.name = req.body.name.toUpperCase()
+    next()
+  }
+server.use(toUppercase);
 
     // userrouter.get('/', async (req, res) => {
     //     try {
@@ -28,7 +27,7 @@ const userrouter = express.Router()
     userrouter.get('/', async (req, res) => {
         try {
           const shoutouts = await UserData.get('shoutouts');
-          const messageOfTheDay = process.env.MOTD || 'Hello World!'; // add this line
+          const messageOfTheDay = process.env.MOTD || 'Hello FINE PEAR!'; // add this line
           res.status(200).json({ motd: messageOfTheDay, shoutouts }); // change this line
         } catch (error) {
           console.error('\nERROR', error);

@@ -2,10 +2,10 @@
   "name": "webapi-blog",
   "version": "1.0.0",
   "description": "Web API Blog Project",
-  "main": "index.js",
+  "main": "index.js", //main file
   "scripts": {
     "start": "node index.js",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js" //will restart on change FOR HEROKU DEPLOY USE
   },
   "engines": {
     "node": "11.10.0"
